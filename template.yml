@@ -167,7 +167,7 @@ Resources:
             - !Ref EC2SecurityGroup
       Tags:
         - Key: Name
-          Value: aws-seminar-ec2
+          Value: !Sub ${Environment}-ec2
       UserData: !Base64 |
         #!/bin/bash
 
@@ -188,7 +188,7 @@ Resources:
       GroupDescription: !Sub Security Group for ${Environment} ALB
       VpcId: !Ref VPC
       SecurityGroupIngress:
-        - CidrIp: !Ref MyIPCidr
+        - CidrIp: 0.0.0.0/0
           Description: Allow Access to 80 port from Anywhere
           FromPort: 80
           ToPort: 80
