@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: AWS Seminar 13 Template
+Description: AWS Seminar Template
 
 Parameters:
   VpcCidr:
@@ -167,7 +167,7 @@ Resources:
             - !Ref EC2SecurityGroup
       Tags:
         - Key: Name
-          Value: !Sub ${Environment}-ec2
+          Value: aws-seminar-ec2
       UserData: !Base64 |
         #!/bin/bash
 
@@ -188,7 +188,7 @@ Resources:
       GroupDescription: !Sub Security Group for ${Environment} ALB
       VpcId: !Ref VPC
       SecurityGroupIngress:
-        - CidrIp: 0.0.0.0/0
+        - CidrIp: !Ref MyIPCidr
           Description: Allow Access to 80 port from Anywhere
           FromPort: 80
           ToPort: 80
